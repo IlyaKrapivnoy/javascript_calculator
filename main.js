@@ -1,14 +1,14 @@
 class Calculator {
-    constructor(previousOperandTextElemnet, currentOperandTextElemnet) {
-        this.previousOperandTextElemnet = previousOperandTextElemnet;
-        this.currentOperandTextElemnet = currentOperandTextElemnet;
-        this.clear()
+    constructor(previousOperandTextElement, currentOperandTextElement) {
+      this.previousOperandTextElement = previousOperandTextElement
+      this.currentOperandTextElement = currentOperandTextElement
+      this.clear()
     }
 
     clear() {
-        this.currentOperand = '';
-        thies.previousOperand = '';
-        thies.operation = undefined;
+        this.currentOperand = ''
+        this.previousOperand = ''
+        this.operation = undefined
     }
 
     delete() {
@@ -16,7 +16,7 @@ class Calculator {
     }
 
     appendNumber(number) {
-
+        this.currentOperand = number
     }
 
     chooseOperation(operation) {
@@ -28,7 +28,7 @@ class Calculator {
     }
 
     updateDisplay() {
-
+        this.currentOperandTextElemnet.innerText = this.currentOperand
     }
 }
 
@@ -39,3 +39,12 @@ const deleteButton = document.querySelector('[data-delete]')
 const allClearButton = document.querySelector('[data-all-clear]')
 const previousOperandTextElemnet = document.querySelector('[data-previous-operand]')
 const currentOperandTextElemnet = document.querySelector('[data-current-operand]')
+
+const calculator = new Calculator(previousOperandTextElemnet, currentOperandTextElemnet)
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      calculator.appendNumber(button.innerText)
+      calculator.updateDisplay()
+    })
+  })
